@@ -1,6 +1,19 @@
 import TimeInput from "./TimeInput";
-import { calculateHMS, calculatePadHMS } from "../helpers";
+import { calculatePadHMS } from "../helpers";
 import { useState } from "react";
+import { Span } from "../styles/Buttons";
+import styled from "styled-components";
+
+const EditableClockContainer = styled.div`
+  // background-color: ${(props) => (props.isWorking ? "#2892D7" : "#1D70A2")};
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 2px 2px 2px rgba(40, 146, 215, 0.35);
+  border-radius: 8px;
+  background-color: #2892d7;
+  width: 100%;
+  
+`;
 
 const NewClock = (props) => {
   const [clock, setClock] = useState(calculatePadHMS(props.startTime));
@@ -32,7 +45,7 @@ const NewClock = (props) => {
     props.addNewClock({ clock, relaxTimer, id: props.id });
   };
   return (
-    <div>
+    <EditableClockContainer>
       <TimeInput
         title={"Work Time"}
         handleHourChange={handleWorkHourChange}
@@ -51,8 +64,10 @@ const NewClock = (props) => {
         minutesValue={relaxTimer.minutes}
         secondsValue={relaxTimer.seconds}
       />
-      <button onClick={addNewClock}>{"Confirm"}</button>
-    </div>
+      <Span className="material-icons" onClick={addNewClock}>
+        check_circle
+      </Span>
+    </EditableClockContainer>
   );
 };
 

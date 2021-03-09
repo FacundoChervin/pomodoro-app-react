@@ -1,7 +1,17 @@
 import { useState } from "react";
 import useInterval from "../hooks/useInterval";
-
+import styled from "styled-components";
 import React from "react";
+import { Span } from "../styles/Buttons";
+const ClockContainer = styled.div`
+  // background-color: ${(props) => (props.isWorking ? "#2892D7" : "#1D70A2")};
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 2px 2px 2px rgba(40, 146, 215, 0.35);
+  border-radius: 8px;
+  background-color: #2892d7;
+  width: 100%;
+`;
 
 const Clock = (props) => {
   const [isActive, setIsActive] = useState(props.isActive);
@@ -36,14 +46,24 @@ const Clock = (props) => {
   );
 
   return (
-    <div className={"clock_container"}>
+    <ClockContainer className={"clock_container"} isWorking={isWorking}>
       <span>{`${Math.floor(seconds / 3600)}`.padStart(2, "0")}</span>:<span>{`${Math.floor(seconds / 60) % 60}`.padStart(2, "0")}</span>:
       <span>{`${Math.floor(seconds % 60)}`.padStart(2, "0")}</span>
-      <button onClick={pause}>{isActive === true ? "Pause" : "Play"}</button>
-      <button onClick={stop}>{isActive === true ? "Stop" : "Play"}</button>
-      <button onClick={deleteClock}>Delete</button>
-      <button onClick={editClock}>Edit</button>
-    </div>
+      <div className="button_wrapper">
+        <Span className="material-icons" onClick={pause}>
+          {isActive === true ? "pause_circle" : "play_circle"}
+        </Span>
+        <Span className="material-icons" onClick={stop}>
+          {isActive === true ? "stop" : ""}
+        </Span>
+        <Span className="material-icons" onClick={deleteClock}>
+          delete
+        </Span>
+        <Span className="material-icons" onClick={editClock}>
+          mode_edit
+        </Span>
+      </div>
+    </ClockContainer>
   );
 };
 

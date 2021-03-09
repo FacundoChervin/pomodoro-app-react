@@ -1,12 +1,31 @@
 import Clock from "./Clock";
 import { useState } from "react";
+import styled from "styled-components";
 import NewClock from "./NewClock";
 import { calculateSeconds } from "../helpers";
+import { Span } from "../styles/Buttons";
 const defaultClock = {
   hours: 0,
   minutes: 0,
   seconds: 0,
 };
+
+const Wrapper = styled.div`
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const ClockWrapper = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
 
 const defaultSeconds = 0;
 
@@ -30,7 +49,6 @@ const Container = (props) => {
         } else return element;
       })
     );
-    // setClocks([...clocks, { id: clockData.id, clock: clockData.clock, relaxTimer: clockData.relaxTimer }]);
     setEditableClocks(
       editableClocks.map((element) => {
         if (element.id === clockData.id) {
@@ -87,10 +105,12 @@ const Container = (props) => {
   };
 
   return (
-    <div className={"container"}>
-      <button onClick={addNewEditableclock}>{"Add"}</button>
-      <ul>{renderClocks()}</ul>
-    </div>
+    <Wrapper className={"container"}>
+      <Span className="material-icons" onClick={addNewEditableclock}>
+        add_circle
+      </Span>
+      <ClockWrapper>{renderClocks()}</ClockWrapper>
+    </Wrapper>
   );
 };
 
