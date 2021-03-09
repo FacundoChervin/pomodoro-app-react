@@ -1,12 +1,14 @@
 import Clock from "./Clock";
 import { useState } from "react";
 import NewClock from "./NewClock";
-
+import { calculateSeconds } from "../helpers";
 const defaultClock = {
   hours: 0,
   minutes: 0,
   seconds: 0,
 };
+
+const defaultSeconds = 0;
 
 const Container = (props) => {
   const [clocks, setClocks] = useState([]);
@@ -14,7 +16,7 @@ const Container = (props) => {
   const [autoID, setAutoId] = useState(0);
 
   const addNewEditableclock = () => {
-    setEditableClocks([...editableClocks, { id: autoID, isEditing: true }]);
+    setEditableClocks([...editableClocks, { id: autoID, isEditing: true, startTime: defaultSeconds, relaxTime: defaultSeconds }]);
     setClocks([...clocks, { id: autoID, clock: defaultClock, relaxTimer: defaultClock }]);
     setAutoId(autoID + 1);
   };
@@ -32,17 +34,17 @@ const Container = (props) => {
     setEditableClocks(
       editableClocks.map((element) => {
         if (element.id === clockData.id) {
-          return { id: clockData.id, isEditing: false };
+          return { id: clockData.id, isEditing: false, startTime: defaultSeconds, relaxTime: defaultSeconds };
         } else return element;
       })
     );
   };
 
-  const editClock = (id) => {
+  const editClock = (clockData) => {
     setEditableClocks(
       editableClocks.map((element) => {
-        if (element.id === id) {
-          return { id: id, isEditing: true };
+        if (element.id === clockData.id) {
+          return { id: clockData.id, isEditing: true, startTime: clockData.startTime, relaxTime: clockData.relaxTime };
         } else return element;
       })
     );
@@ -58,7 +60,7 @@ const Container = (props) => {
       ? editableClocks.map((c, index) =>
           c.isEditing ? (
             <li key={c.id}>
-              <NewClock id={c.id} addNewClock={addNewClock} />
+              <NewClock id={c.id} addNewClock={addNewClock} startTime={c.startTime} relaxTime={c.relaxTime} />
             </li>
           ) : (
             <li key={c.id}>
@@ -90,13 +92,6 @@ const Container = (props) => {
       <ul>{renderClocks()}</ul>
     </div>
   );
-};
-
-const calculateSeconds = (clock) => {
-  const { hours, minutes, seconds } = clock;
-
-  let time = hours * 3600 + minutes * 60 + seconds;
-  return time;
 };
 
 export default Container;

@@ -13,6 +13,7 @@ const Clock = (props) => {
   const pause = () => {
     setIsActive((isActive) => (isActive ? false : true));
   };
+
   const stop = () => {
     setIsActive(() => false);
     setSeconds(() => 0);
@@ -23,7 +24,8 @@ const Clock = (props) => {
   };
 
   const editClock = () => {
-    props.editClock(props.id);
+    setIsActive(false);
+    props.editClock({ id: props.id, startTime: props.startTime, relaxTime: props.relaxTime });
   };
   useInterval(
     () => {

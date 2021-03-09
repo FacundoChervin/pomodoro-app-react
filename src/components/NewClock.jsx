@@ -1,9 +1,10 @@
 import TimeInput from "./TimeInput";
+import { calculateHMS, calculatePadHMS } from "../helpers";
 import { useState } from "react";
 
 const NewClock = (props) => {
-  const [clock, setClock] = useState({ hours: 0, minutes: 0, seconds: 0 });
-  const [relaxTimer, setRelaxTimer] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [clock, setClock] = useState(calculatePadHMS(props.startTime));
+  const [relaxTimer, setRelaxTimer] = useState(calculatePadHMS(props.relaxTime));
 
   const handleWorkHourChange = (e) => {
     setClock({ hours: e.target.value ? parseInt(e.target.value) : 0, minutes: clock.minutes, seconds: clock.seconds });
@@ -37,12 +38,18 @@ const NewClock = (props) => {
         handleHourChange={handleWorkHourChange}
         hanldeMinuteChange={handleWorkMinuteChange}
         handleSecondChange={handleWorkSecondChange}
+        hoursValue={clock.hours}
+        minutesValue={clock.minutes}
+        secondsValue={clock.seconds}
       />
       <TimeInput
         title={"Relax Time"}
         handleHourChange={handleRelaxHourChange}
         hanldeMinuteChange={handleRelaxMinuteChange}
         handleSecondChange={handleRelaxSecondChange}
+        hoursValue={relaxTimer.hours}
+        minutesValue={relaxTimer.minutes}
+        secondsValue={relaxTimer.seconds}
       />
       <button onClick={addNewClock}>{"Confirm"}</button>
     </div>

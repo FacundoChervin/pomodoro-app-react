@@ -1,12 +1,27 @@
 const TimeInput = (props) => {
+  const handleFocus = (event) => event.target.select();
   return (
     <div className={"input-container"}>
       <h2>{props.title}</h2>
-      <input type="number" placeholder={"Hours"} name="hours" onChange={props.handleHourChange} />
+      <input type="number" onFocus={handleFocus} placeholder={"Hours"} value={props.hoursValue} name="hours" onChange={props.handleHourChange} />
       {":"}
-      <input type="number" placeholder={"Minutes"} name="minutes" onChange={props.hanldeMinuteChange} />
+      <input
+        type="number"
+        onFocus={handleFocus}
+        placeholder={"Minutes"}
+        value={props.minutesValue}
+        name="minutes"
+        onChange={props.hanldeMinuteChange}
+      />
       {":"}
-      <input type="number" placeholder={"Seconds"} name="seconds" onChange={props.handleSecondChange} />
+      <input
+        type="number"
+        onFocus={handleFocus}
+        placeholder={"Seconds"}
+        value={props.secondsValue}
+        name="seconds"
+        onChange={props.handleSecondChange}
+      />
     </div>
   );
 };
