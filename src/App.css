@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -23,6 +24,12 @@ li {
   width: 23%;
 }
 
+@media only screen and (max-width: 600px) {
+  li {
+    width: 30%;
+  }
+}
+
 input {
   width: 30px;
   text-align: center;
@@ -35,11 +42,11 @@ input {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-   -webkit-appearance: none;
-   margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 input[type="number"] {
-   -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 span {
