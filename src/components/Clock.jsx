@@ -47,7 +47,10 @@ const Clock = (props) => {
 
   return (
     <ClockContainer className={"clock_container"} isWorking={isWorking}>
-      <span>{`${Math.floor(seconds / 3600)}`.padStart(2, "0")}</span>:<span>{`${Math.floor(seconds / 60) % 60}`.padStart(2, "0")}</span>:
+      <span>{`${Math.floor(seconds / 3600)}`.padStart(2, "0")}</span>
+      <span>:</span>
+      <span>{`${Math.floor(seconds / 60) % 60}`.padStart(2, "0")}</span>
+      <span>:</span>
       <span>{`${Math.floor(seconds % 60)}`.padStart(2, "0")}</span>
       <div className="button_wrapper">
         <Span className="material-icons" onClick={pause}>

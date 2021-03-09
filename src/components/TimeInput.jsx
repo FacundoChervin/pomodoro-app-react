@@ -10,14 +10,32 @@ const Title = styled.h3`
   margin: 0.8vh;
 `;
 
+const InputNumber = styled.input`
+  background: none;
+  border-style: solid;
+  border-color: white;
+  border-width: 0.5px;
+  color: white;
+  border-radius: 4px;
+  margin: 0px 1px 0px 1px;
+  width: 25px;
+`;
+
 const TimeInput = (props) => {
   const handleFocus = (event) => event.target.select();
   return (
     <InputContainer className={"input-container"}>
       <Title>{props.title}</Title>
-      <input type="number" onFocus={handleFocus} placeholder={"Hours"} value={props.hoursValue} name="hours" onChange={props.handleHourChange} />
+      <InputNumber
+        type="number"
+        onFocus={handleFocus}
+        placeholder={"Hours"}
+        value={props.hoursValue}
+        name="hours"
+        onChange={props.handleHourChange}
+      />
       <span>:</span>
-      <input
+      <InputNumber
         type="number"
         onFocus={handleFocus}
         placeholder={"Minutes"}
@@ -26,7 +44,7 @@ const TimeInput = (props) => {
         onChange={props.hanldeMinuteChange}
       />
       <span>:</span>
-      <input
+      <InputNumber
         type="number"
         onFocus={handleFocus}
         placeholder={"Seconds"}

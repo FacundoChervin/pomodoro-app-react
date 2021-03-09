@@ -106,7 +106,7 @@ const Container = (props) => {
 
   return (
     <Wrapper className={"container"}>
-      <Span className="material-icons" onClick={addNewEditableclock}>
+      <Span hoverColor="white" className="material-icons" onClick={addNewEditableclock}>
         add_circle
       </Span>
       <ClockWrapper>{renderClocks()}</ClockWrapper>
