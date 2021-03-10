@@ -1,7 +1,7 @@
 const calculateSeconds = (clock) => {
   const { hours, minutes, seconds } = clock;
 
-  let time = hours * 3600 + minutes * 60 + seconds;
+  let time = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
   return time;
 };
 
