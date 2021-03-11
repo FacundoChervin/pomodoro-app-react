@@ -3,6 +3,7 @@ import useInterval from "../hooks/useInterval";
 import styled from "styled-components";
 import React from "react";
 import { Span } from "../styles/Buttons";
+
 const ClockContainer = styled.div`
   padding: 5px;
   box-shadow: 2px 2px 2px rgba(40, 146, 215, 0.35);
@@ -11,8 +12,17 @@ const ClockContainer = styled.div`
   width: 100%;
 `;
 
-const ClockCeld = styled.span`
+const StateMessage = styled.div`
   color: ${(props) => (props.isWorking ? "red" : "green")};
+  padding: 2%;
+  background-color: white;
+  width: 50%;
+  margin: 2% auto;
+  border-radius: 5px;
+`;
+
+const ClockCeld = styled.span`
+  // color: ${(props) => (props.isWorking ? "red" : "green")};
 `;
 
 const PomodoroName = styled.h3`
@@ -23,10 +33,11 @@ const PomodoroName = styled.h3`
 `;
 
 const ClockWrapper = styled.div`
-  background-color: white;
-  width: 50%;
-  margin: 0 auto;
-  border-radius: 5px;
+  // background-color: white;
+  // width: 50%;
+  // margin: 0 auto;
+  // border-radius: 5px;
+  color: white;
 `;
 
 const Clock = (props) => {
@@ -64,6 +75,7 @@ const Clock = (props) => {
   return (
     <ClockContainer className={"clock_container"}>
       <PomodoroName>{props.name}</PomodoroName>
+      <StateMessage isWorking={isWorking}>{isWorking ? "Time to work" : "Time to rest"}</StateMessage>
       <ClockWrapper>
         <ClockCeld isWorking={isWorking}>{`${Math.floor(seconds / 3600)}`.padStart(2, "0")}</ClockCeld>
         <ClockCeld isWorking={isWorking}>:</ClockCeld>

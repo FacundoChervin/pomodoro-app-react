@@ -11,6 +11,7 @@ const EditableClockContainer = styled.div`
   border-radius: 8px;
   background-color: #2892d7;
   width: 100%;
+  font-size: 30px;
 `;
 
 const InputName = styled.input`
@@ -18,7 +19,7 @@ const InputName = styled.input`
   background: none;
   color: white;
   font-weight: bold;
-  font-size: 90%;
+  font-size: 25px;
 `;
 
 const NewClock = (props) => {
@@ -54,11 +55,15 @@ const NewClock = (props) => {
     props.addNewClock({ startTime: calculateSeconds(clock), relaxTime: calculateSeconds(relaxTimer), id: props.id, name: clock.name || props.name });
   };
 
+  const deleteClock = () => {
+    props.deleteClock(props.id);
+  };
+
   const handleFocus = (event) => event.target.select();
 
   return (
     <EditableClockContainer>
-      <InputName type="text" value={clock.name || props.name} onChange={handleNameChange} onFocus={handleFocus} />
+      <InputName maxLength="12" type="text" value={clock.name || props.name} onChange={handleNameChange} onFocus={handleFocus} />
       <TimeInput
         title={"Work Time"}
         handleHourChange={handleWorkHourChange}
@@ -75,6 +80,9 @@ const NewClock = (props) => {
       />
       <Span className="material-icons" onClick={addNewClock}>
         check_circle
+      </Span>
+      <Span className="material-icons" onClick={deleteClock}>
+        delete
       </Span>
     </EditableClockContainer>
   );

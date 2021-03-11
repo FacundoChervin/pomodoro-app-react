@@ -62,7 +62,7 @@ const Container = (props) => {
       ? clocks.map((c) =>
           c.isEditing ? (
             <li key={c.id}>
-              <NewClock name={c.name} id={c.id} addNewClock={addNewClock} startTime={c.startTime} relaxTime={c.relaxTime} />
+              <NewClock name={c.name} id={c.id} deleteClock={deleteClock} addNewClock={addNewClock} startTime={c.startTime} relaxTime={c.relaxTime} />
             </li>
           ) : (
             <li key={c.id}>
