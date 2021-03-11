@@ -10,6 +10,13 @@ const ClockContainer = styled.div`
   border-radius: 8px;
   background-color: #2892d7;
   width: 100%;
+  color: white;
+  transition: 500ms ease-out;
+  &:hover {
+    background-color: #6daedb;
+    transition: 300ms ease-in;
+    color: #173753;
+  }
 `;
 
 const StateMessage = styled.div`
@@ -26,7 +33,7 @@ const ClockCeld = styled.span`
 `;
 
 const PomodoroName = styled.h3`
-  color: white;
+  // color: white;
   font-weight: 300;
   margin: 1vh;
   text-decoration: underline;
@@ -37,7 +44,7 @@ const ClockWrapper = styled.div`
   // width: 50%;
   // margin: 0 auto;
   // border-radius: 5px;
-  color: white;
+  // color: white;
 `;
 
 const Clock = (props) => {

@@ -28,7 +28,13 @@ li {
 
 @media only screen and (max-width: 600px) {
   li {
-    width: 30%;
+    width: 40%;
+    margin: 4%;
+  }
+
+  .span {
+    margin: 0.2vh 0 0.2vh 0;
+    padding: 0;
   }
 }
 
@@ -53,7 +59,7 @@ input[type="number"] {
 span {
   margin: 0px;
   padding: 0px;
-  color: white;
+  /* color: white; */
 }
 
 h2 {
