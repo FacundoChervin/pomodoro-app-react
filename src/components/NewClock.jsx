@@ -1,5 +1,5 @@
 import TimeInput from "./TimeInput";
-import { calculatePadHMS } from "../helpers";
+import { padHMS, calculateSeconds, calculateHMS } from "../helpers";
 import { useState } from "react";
 import { Span } from "../styles/Buttons";
 import styled from "styled-components";
@@ -7,17 +7,23 @@ import styled from "styled-components";
 const EditableClockContainer = styled.div`
   // background-color: ${(props) => (props.isWorking ? "#2892D7" : "#1D70A2")};
   padding: 5px;
-  margin: 5px;
   box-shadow: 2px 2px 2px rgba(40, 146, 215, 0.35);
   border-radius: 8px;
   background-color: #2892d7;
   width: 100%;
-  
+`;
+
+const InputName = styled.input`
+  width: 90%;
+  background: none;
+  color: white;
+  font-weight: bold;
+  font-size: 90%;
 `;
 
 const NewClock = (props) => {
-  const [clock, setClock] = useState(calculatePadHMS(props.startTime));
-  const [relaxTimer, setRelaxTimer] = useState(calculatePadHMS(props.relaxTime));
+  const [clock, setClock] = useState(calculateHMS(props.startTime));
+  const [relaxTimer, setRelaxTimer] = useState(calculateHMS(props.relaxTime));
 
   const handleWorkHourChange = (e) => {
     setClock({ hours: e.target.value ? parseInt(e.target.value) : 0, minutes: clock.minutes, seconds: clock.seconds });
@@ -40,29 +46,32 @@ const NewClock = (props) => {
   const handleRelaxSecondChange = (e) => {
     setRelaxTimer({ hours: relaxTimer.hours, minutes: relaxTimer.minutes, seconds: e.target.value ? parseInt(e.target.value) : 0 });
   };
+  const handleNameChange = (e) => {
+    setClock({ ...clock, name: e.target.value });
+  };
 
   const addNewClock = () => {
-    props.addNewClock({ clock, relaxTimer, id: props.id });
+    props.addNewClock({ startTime: calculateSeconds(clock), relaxTime: calculateSeconds(relaxTimer), id: props.id, name: clock.name || props.name });
   };
+
+  const handleFocus = (event) => event.target.select();
+
   return (
     <EditableClockContainer>
+      <InputName type="text" value={clock.name || props.name} onChange={handleNameChange} onFocus={handleFocus} />
       <TimeInput
         title={"Work Time"}
         handleHourChange={handleWorkHourChange}
         hanldeMinuteChange={handleWorkMinuteChange}
         handleSecondChange={handleWorkSecondChange}
-        hoursValue={clock.hours}
-        minutesValue={clock.minutes}
-        secondsValue={clock.seconds}
+        timer={padHMS(clock)}
       />
       <TimeInput
         title={"Relax Time"}
         handleHourChange={handleRelaxHourChange}
         hanldeMinuteChange={handleRelaxMinuteChange}
         handleSecondChange={handleRelaxSecondChange}
-        hoursValue={relaxTimer.hours}
-        minutesValue={relaxTimer.minutes}
-        secondsValue={relaxTimer.seconds}
+        timer={padHMS(relaxTimer)}
       />
       <Span className="material-icons" onClick={addNewClock}>
         check_circle

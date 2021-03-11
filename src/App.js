@@ -1,6 +1,11 @@
 import "./App.css";
 import Container from "./components/Container";
 import styled from "styled-components";
+
+const BoldSubtitle = styled.span`
+  font-weight: bold;
+`;
+
 const AppContainer = styled.div`
   background-color: #173753;
   heigth: 100%;
@@ -26,7 +31,7 @@ function App() {
     <AppContainer className="App">
       <Title>¡Welcome to the Pomodoro App!</Title>
       <Subtitle>
-        Manage your time and <b>get things done</b> without burning yourself out
+        Manage your time and <BoldSubtitle>get things done</BoldSubtitle> without burning yourself out.
       </Subtitle>
       <Container />
     </AppContainer>

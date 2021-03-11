@@ -30,7 +30,7 @@ const TimeInput = (props) => {
         type="number"
         onFocus={handleFocus}
         placeholder={"Hours"}
-        value={props.hoursValue}
+        value={props.timer.hours}
         name="hours"
         onChange={props.handleHourChange}
       />
@@ -39,7 +39,7 @@ const TimeInput = (props) => {
         type="number"
         onFocus={handleFocus}
         placeholder={"Minutes"}
-        value={props.minutesValue}
+        value={props.timer.minutes}
         name="minutes"
         onChange={props.hanldeMinuteChange}
       />
@@ -48,7 +48,7 @@ const TimeInput = (props) => {
         type="number"
         onFocus={handleFocus}
         placeholder={"Seconds"}
-        value={props.secondsValue}
+        value={props.timer.seconds}
         name="seconds"
         onChange={props.handleSecondChange}
       />

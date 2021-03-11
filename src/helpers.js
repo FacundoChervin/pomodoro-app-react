@@ -13,6 +13,14 @@ const calculatePadHMS = (time) => {
   return { hours, minutes, seconds };
 };
 
+const padHMS = (clock) => {
+  const hours = `${clock.hours}`.padStart(2, "0");
+  const minutes = `${clock.minutes}`.padStart(2, "0");
+  const seconds = `${clock.seconds}`.padStart(2, "0");
+
+  return { hours, minutes, seconds };
+};
+
 const calculateHMS = (time) => {
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor(time / 60) % 6;
@@ -21,4 +29,4 @@ const calculateHMS = (time) => {
   return { hours, minutes, seconds };
 };
 
-export { calculateSeconds, calculateHMS, calculatePadHMS };
+export { calculateSeconds, calculateHMS, calculatePadHMS, padHMS };
